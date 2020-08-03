@@ -1,4 +1,4 @@
-﻿using Employee_mvc_webapi.DAL;
+using Employee_mvc_webapi.DAL;
 using Employee_mvc_webapi.Models;
 using System;
 using System.Collections.Generic;
@@ -35,6 +35,8 @@ namespace Employee_mvc_webapi.Controllers.api
                 return false;
             }
         }
+
+      
 
         [HttpGet]
         [Route("api/Employees/Details/{id}")]
