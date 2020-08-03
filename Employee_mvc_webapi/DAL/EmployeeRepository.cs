@@ -1,4 +1,4 @@
-﻿using Dapper;
+using Dapper;
 using Employee_mvc_webapi.Models;
 using System;
 using System.Collections.Generic;
@@ -20,19 +20,18 @@ namespace Employee_mvc_webapi.DAL
         }
         bool IEmployeeRepository.Add(Employee employee)
         {
-            int rowsAffected = this._db.Execute(@"INSERT Employee([Name],[Address],[Gender],[Company],[Designation]) 
+            int rowsAffected = this._db.Execute(@"INSERT Employee([FirstName],[LastName],[Emailid],[Address],[Gender],[Company],[Designation]) 
 
-values (@Name, @Address, @Gender,@Company,@Designation)",
-                        new { Name = employee.Name,
-                            Address= employee.Address,
+values (@FirstName,@LastName,@Emailid, @Address, @Gender,@Company,@Designation)",
+                        new {
+                            FirstName = employee.FirstName,
+                            LastName = employee.LastName,
+                            Emailid = employee.Emailid,
+                            Address = employee.Address,
                             Gender = employee.Gender,
                             Company = employee.Company,
                             Designation = employee.Designation
-
-                     
-
-
-        });
+ });
 
             if (rowsAffected > 0)
             {
@@ -67,10 +66,12 @@ values (@Name, @Address, @Gender,@Company,@Designation)",
             return _db.Query<Employee>("SELECT *  FROM [Employee]  ").ToList();
         }
 
+        
+
         bool IEmployeeRepository.Update(Employee employee)
         {
             int rowsAffected = this._db.Execute(
-   "UPDATE [Employee] SET [Name] = @Name ,[Address] = @Address, [Gender] = @Gender,[Company]=@Company,Designation=@Designation WHERE Empid = " +
+   "UPDATE [Employee] SET [FirstName] = @FirstName ,[LastName]=@LastName,[Emailid]=@Emailid,[Address] = @Address, [Gender] = @Gender,[Company]=@Company,Designation=@Designation WHERE Empid = " +
                         employee.Empid, employee);
 
             if (rowsAffected > 0)
@@ -81,15 +82,7 @@ values (@Name, @Address, @Gender,@Company,@Designation)",
             return false;
 
 
-  //          int rowsAffected = this._db.Execute(
-  //"UPDATE [Employee] SET [Name] = @Name ,[Address] = @Address,[Gender] = @Gender,[Company]=@Company,[Designation]=@Designation WHERE Empid = " + employee.Empid,employee);
-
-  //          if (rowsAffected > 0)
-  //          {
-  //              return true;
-  //          }
-
-  //          return false;
+  
         }
     }
 }
