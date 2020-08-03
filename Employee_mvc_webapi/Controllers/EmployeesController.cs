@@ -1,4 +1,4 @@
-﻿
+
 using Employee_mvc_webapi.Models;
 using System;
 using System.Collections.Generic;
@@ -77,7 +77,7 @@ namespace Employee_mvc_webapi.Controllers
         // POST: Employees/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "Name,Address,Gender,Company,Designation")] Employee employee)
+        public async Task<ActionResult> Create([Bind(Include = "FirstName,LastName,Emailid,Address,Gender,Company,Designation")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -133,7 +133,7 @@ namespace Employee_mvc_webapi.Controllers
         [HttpPost]
     
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "Empid,Name,Address,Gender,Company,Designation")] Employee employee)
+        public async Task<ActionResult> Edit([Bind(Include = "Empid,FirstName,LastName,Emailid,Address,Gender,Company,Designation")] Employee employee)
         {
             if (ModelState.IsValid)
             {
@@ -204,5 +204,7 @@ namespace Employee_mvc_webapi.Controllers
             }
             return View();
         }
+
+   
     }
 }
